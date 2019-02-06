@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost/meanGifts';
 if (process.env.NODE_ENV === 'production') {
@@ -46,4 +46,4 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
-require('./users');
+require('./user');

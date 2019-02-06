@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-
+import {RequestOptions, Request, Headers } from '@angular/http';
 export interface UserDetails {
   _id: string;
   email: string;
@@ -63,10 +63,10 @@ export class AuthService {
   private request(method:'post'|'get', type:'login'|'register'|'profile',user?:TokenPayload):Observable<any>{
     let base;
     if(method=='post'){
-      base=this.http.post(`/api/${type}`,user);
+      base=this.http.post(`localhost:3000/api/${type}`,user);
     }
     else{
-      base=this.http.get(`/api/${type}`,{ headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base=this.http.get(`localhost:3000/api/${type}`,{ headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request=base.pipe(map((data:TokenResponse)=>{

@@ -5,13 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-
+var cors=require('cors');
 require('./api/models/db');
 require('./api/config/passport');
-
 var routesApi = require('./api/routes/index');
 var app = express();
-
+app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -21,7 +20,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+
 
 app.use(passport.initialize());
 app.use('/api', routesApi);
@@ -47,7 +46,7 @@ if (app.get('env') === 'development') {
           });
       });
   }
-  
+
   app.use((err, req, res, next)=> {
       res.status(err.status || 500);
       res.render('error', {
@@ -55,6 +54,6 @@ if (app.get('env') === 'development') {
           error: {}
       });
   });
-  
+  app.listen(3000);
   
   module.exports = app;

@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-
+var mongoose=require('mongoose');
 var crypto = require('crypto');
 var userSchema = new mongoose.Schema({
     email: {
@@ -35,3 +35,4 @@ var userSchema = new mongoose.Schema({
       exp: parseInt(expiry.getTime() / 1000),
     }, "43141341asd"); 
   };
+  mongoose.model('User',userSchema);
