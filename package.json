@@ -1,0 +1,31 @@
+{
+  "name": "mongoprojekat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/todor996/nbpMongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/todor996/nbpMongo/issues"
+  },
+  "homepage": "https://github.com/todor996/nbpMongo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.5.0"
+  }
+}
