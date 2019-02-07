@@ -73,6 +73,7 @@ export class UserService {
   }
   public register(user: TokenPayload): Observable<any> {
     return this.request('post', 'register', user);
+
   }
 
   public login(user: TokenPayload): Observable<any> {

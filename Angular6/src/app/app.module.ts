@@ -13,6 +13,8 @@ import { appRoutes } from './routes';
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { UserService } from './shared/user.service';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { HomeComponent } from './home/home.component';
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
