@@ -57,7 +57,7 @@ export class UserService {
     if (method === 'post') {
       base = this.http.post(`http://localhost:3000/api/${type}`, user);
     } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`http://localhost:3000/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request = base.pipe(
@@ -86,7 +86,7 @@ export class UserService {
 
   public logout(): void {
     this.token = '';
-    window.localStorage.removeItem('mean-token');
+    window.localStorage.removeItem('meanGifts-token');
     this.router.navigateByUrl('/');
   }
 }
