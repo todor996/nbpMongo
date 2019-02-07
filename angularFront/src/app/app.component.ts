@@ -9,4 +9,7 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'angularFront';
   constructor(public auth:AuthService){}
+  public logOut(){
+    this.auth.logOut();
+  }
 }
