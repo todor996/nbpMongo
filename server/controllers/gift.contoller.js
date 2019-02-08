@@ -5,12 +5,15 @@ const Gift=mongoose.model('Gift');
 
 module.exports.addGift = (req,res,next) => {
     var gift=new Gift();
+    var date=new Date();
     gift.name=req.body.name;
     gift.price=req.body.price;
     gift.description=req.body.description;
     gift.inStock=true;
     gift.category=req.body.category;
-
+    gift.dateAdded=date.getDate();
+    gift.discount=req.body.discount;
+    gift.imgurl=req.body.imgurl;
     gift.save((err,doc) => {
         if (!err)
             res.send(doc);
@@ -21,7 +24,11 @@ module.exports.addGift = (req,res,next) => {
 }
 
 module.exports.getGiftsFromCategory = (req,res,next) => {
-    Gift.find({category:req.category});
+    return Gift.find({category:req.category});
+}
+
+module.exports.getAllGifts = (req,res,next) => {
+    return Gift.find();
 }
 
 module.exports.getGiftById = (req, res, next) =>{

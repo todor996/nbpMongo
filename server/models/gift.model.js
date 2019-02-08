@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var date=new Date();
 
 var giftSchema= new mongoose.Schema({
     name:
@@ -25,7 +26,21 @@ var giftSchema= new mongoose.Schema({
     {
         type:String,
         default:"unknown"
+    },
+    dateAdded:{
+        type:Date,
+        default:date.getDate()
+    },
+    discount:{
+        type:Number,
+        default:0,
+        max:100,
+        min:0
+    },
+    imgurl:{
+        type:String,
+        default:"http://tjmartell.org/lib/kcfinder/upload/images/gift.jpeg"
     }
 });
 
-mongoose.model('Gift',giftSchema);
+module.exports=mongoose.model('Gift',giftSchema);
