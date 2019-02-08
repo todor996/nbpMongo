@@ -1,3 +1,19 @@
-<p>
-  home works!
-</p>
+<div *ngIf="auth.isLoggedIn()">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened>Kategorije</mat-sidenav>
+    <mat-sidenav-content>
+        <div *ngFor="let gift of gifts" className="product-listing" >
+            <div className="product-list-item" width="200px">
+              <h3>Name: {{gift.name}}</h3>
+              <div> <img  height="100px" src={{gift.imgUrl}} /></div>
+              <div id="price">Price: {{gift.price}}</div>
+            </div>  
+        </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  
+</div>
+<div *ngIf="!auth.isLoggedIn()">
+  <p>Please log or register, so that you can view products. Have a nice shopping :)</p>
+</div>
