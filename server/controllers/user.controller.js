@@ -45,3 +45,12 @@ module.exports.userProfile = (req, res, next) =>{
         }
     );
 }
+
+module.exports.addGiftToUsersList = (req,res,next) => {    
+    User.findOneAndUpdate({_id:req._id}, 
+        { $addToSet: { gifts:req.giftId } });
+}
+
+module.exports.removeGiftFromUsersList = (req,res,next) => {    
+    User.findOneAndUpdate( { _id: req._id }, { $pullAll: { gifts: req.giftId } } );
+}
