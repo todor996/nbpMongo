@@ -15,6 +15,10 @@ var commentSchema= new mongoose.Schema({
         type:String,
         default:"",
         required:"Can't post empty comment"
+    },
+    dateAdded:{
+        type:Date,
+        required:true
     }
 });
 

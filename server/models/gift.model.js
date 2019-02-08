@@ -36,6 +36,10 @@ var giftSchema= new mongoose.Schema({
         default:0,
         max:100,
         min:0
+    },
+    imgurl:{
+        type:String,
+        default:"http://tjmartell.org/lib/kcfinder/upload/images/gift.jpeg"
     }
 });
 
