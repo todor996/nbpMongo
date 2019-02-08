@@ -8,5 +8,5 @@ import { UserService } from './shared/user.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private auth:UserService){  }
+  
 }

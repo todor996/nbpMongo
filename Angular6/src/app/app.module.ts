@@ -15,7 +15,8 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './shared/user.service';
 import { AuthGuardService } from './shared/auth-guard.service';
-
+import {MatSidenavModule,MatToolbarModule} from '@angular/material';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,13 +24,16 @@ import { AuthGuardService } from './shared/auth-guard.service';
     SignUpComponent,
     ProfileComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   providers: [UserService,AuthGuardService],
   bootstrap: [AppComponent]
