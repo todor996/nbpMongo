@@ -4,6 +4,11 @@
   <div *ngIf="signUpForm.submitted && !fullName.valid">
     <label class="validation-message">This field is required.</label>
   </div>
+ <mat-radio-group name="admin" #admin="ngModel" [(ngModel)]="userService.selectedUser.admin">
+    <div>Admin?</div>
+      <mat-radio-button value="true">True</mat-radio-button>
+      <mat-radio-button value="false">False</mat-radio-button>
+  </mat-radio-group>
   <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" placeholder="Email"
   required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
   <div *ngIf="signUpForm.submitted && email.errors">

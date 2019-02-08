@@ -24,7 +24,6 @@ export class SignUpComponent implements OnInit {
     console.log(form.value)
     this.userService.register(form.value).subscribe(
       res => {
-        console.log("p");
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.router.navigateByUrl('/profile');
@@ -45,7 +44,8 @@ export class SignUpComponent implements OnInit {
     this.userService.selectedUser = {
       fullName: '',
       email: '',
-      password: ''
+      password: '',
+      admin:false
     };
     form.resetForm();
     this.serverErrorMessages = '';

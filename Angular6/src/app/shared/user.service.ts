@@ -7,6 +7,7 @@ import { User } from './user.model';
 import { Router } from '@angular/router';
 interface TokenResponse {
   token: string;
+  admin:boolean;
 }
 
 export interface TokenPayload {
@@ -22,8 +23,9 @@ export class UserService {
     fullName: '',
     email: '',
     password: '',
+    admin:false
   };
-
+  admin:boolean;
   constructor(private http: HttpClient,private router:Router) { }
   private token:string;
   private saveToken(token:string):void{
@@ -50,6 +52,9 @@ export class UserService {
     if(user)
       return user.exp>Date.now()/1000;
     else return false;
+  }
+  public isAdmin():boolean{
+   return this.admin;
   }
   private request(method: 'post'|'get', type: 'authenticate'|'register'|'userProfile', user?: TokenPayload): Observable<any> {
     let base;

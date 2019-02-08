@@ -11,8 +11,10 @@ html,body{
 }
 div{
     float:left;
-    padding-left:30px
+    padding-left:30px;
+    text-align:center;
 }
+
 mat-sidenav{
     padding:0;
     background-color:transparent;
@@ -26,7 +28,9 @@ mat-sidenav{
     background: #eee;
   }
 
-#price
+.clear
 {
     clear: both;
+    display:flex;
+    justify-content: center;    
 }

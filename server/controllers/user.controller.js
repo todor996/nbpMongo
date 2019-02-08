@@ -9,6 +9,7 @@ module.exports.register = (req, res, next) => {
     user.fullName = req.body.fullName;
     user.email = req.body.email;
     user.password = req.body.password;
+    user.admin=req.body.admin;
     user.save((err, doc) => {
         if (!err)
             res.send(doc);
@@ -28,7 +29,7 @@ module.exports.authenticate = (req, res, next) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
         // registered user
-        else if (user) return res.status(200).json({ "token": user.generateJwt() });
+        else if (user) return res.status(200).json({ "token": user.generateJwt() ,"admin":user.admin});
         // unknown user or wrong password
         else return res.status(404).json(info);
     })(req, res);
@@ -40,7 +41,7 @@ module.exports.userProfile = (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['fullName','email']) });
+                return res.status(200).json({ status: true, user : _.pick(user,['fullName','email','admin']) });
         }
     );
 }

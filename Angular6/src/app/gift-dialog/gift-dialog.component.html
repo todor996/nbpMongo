@@ -1,0 +1,16 @@
+<div className="product-list-item" width="200px">
+    <h3>Name: {{data.name}}</h3>
+    <div> <img  height="100px" src={{data.imgUrl}} /></div>
+    <div >Price: {{data.price}}</div>
+    <span>Average rating: 4/5</span>
+    <div>
+      Is available:{{data.inStock}}
+    </div>
+    <div *ngFor="let comment of data.comments">
+      <div>{{comment}} posted by {{comment.user}} on {{comment.date}}</div>
+    </div>
+    
+    <div>
+      <button mat-icon-button><mat-icon>shop</mat-icon></button>
+    </div>
+</div>  

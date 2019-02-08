@@ -3,4 +3,5 @@ export class Gift{
     category:String;
     price:Number;
     imgUrl:String;
+    comments:String[];
 }

@@ -11,19 +11,21 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
   credentials: TokenPayload = {
     email: '',
-    password: ''
+    password: '',
   };
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
   constructor(private auth:UserService,private router:Router) { }
   onSubmit(form: NgForm) {
-    console.log(form.value)
+    
     this.auth.login(form.value).subscribe(
       res => {
-        
+        console.log(res);
+        this.auth.admin=res.admin;
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
+        
         this.router.navigateByUrl('/');
        
 

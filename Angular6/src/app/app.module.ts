@@ -15,9 +15,10 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './shared/user.service';
 import { AuthGuardService } from './shared/auth-guard.service';
-import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule} from '@angular/material';
+import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule,MatButtonModule, MatIconModule, MatDialogModule, MatRadioButton, MatRadioModule} from '@angular/material';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GiftDialogComponent } from './gift-dialog/gift-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent,
     LoginComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    GiftDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,8 +39,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatRadioModule,
     BrowserAnimationsModule
   ],
+  entryComponents:[GiftDialogComponent],
   providers: [UserService,AuthGuardService],
   bootstrap: [AppComponent]
 })
