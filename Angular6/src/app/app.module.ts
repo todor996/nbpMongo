@@ -15,7 +15,7 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './shared/services/user.service';
 import { AuthGuardService } from './shared/auth-guard.service';
-import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule,MatButtonModule, MatIconModule, MatDialogModule, MatRadioButton, MatRadioModule} from '@angular/material';
+import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule,MatButtonModule, MatIconModule, MatDialogModule, MatRadioButton, MatRadioModule, MatInputModule} from '@angular/material';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GiftDialogComponent } from './gifts/gift-dialog/gift-dialog.component';
@@ -46,6 +46,7 @@ import { GiftService } from './shared/services/gift.service';
     MatIconModule,
     MatDialogModule,
     MatRadioModule,
+    MatInputModule,
     BrowserAnimationsModule
   ],
   entryComponents:[GiftDialogComponent,AddGiftComponent],
