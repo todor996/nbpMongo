@@ -13,12 +13,14 @@ import { appRoutes } from './routes';
 import { ProfileComponent } from './user/profile/profile.component';
 import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
-import { UserService } from './shared/user.service';
+import { UserService } from './shared/services/user.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule,MatButtonModule, MatIconModule, MatDialogModule, MatRadioButton, MatRadioModule} from '@angular/material';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GiftDialogComponent } from './gift-dialog/gift-dialog.component';
+import { GiftDialogComponent } from './gifts/gift-dialog/gift-dialog.component';
+import { AddGiftComponent } from './gifts/add-gift/add-gift.component';
+import { GiftService } from './shared/services/gift.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { GiftDialogComponent } from './gift-dialog/gift-dialog.component';
     LoginComponent,
     HomeComponent,
     NavigationComponent,
-    GiftDialogComponent
+    GiftDialogComponent,
+    AddGiftComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +48,8 @@ import { GiftDialogComponent } from './gift-dialog/gift-dialog.component';
     MatRadioModule,
     BrowserAnimationsModule
   ],
-  entryComponents:[GiftDialogComponent],
-  providers: [UserService,AuthGuardService],
+  entryComponents:[GiftDialogComponent,AddGiftComponent],
+  providers: [UserService,AuthGuardService,GiftService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

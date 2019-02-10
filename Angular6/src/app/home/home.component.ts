@@ -1,50 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../shared/services/user.service';
 import {Gift} from '../shared/gift.model';
 import { MatDialog } from '@angular/material';
-import { GiftDialogComponent } from '../gift-dialog/gift-dialog.component';
+import { GiftDialogComponent } from '../gifts/gift-dialog/gift-dialog.component';
 import { User } from '../shared/user.model';
+import { GiftService } from '../shared/services/gift.service';
+import { AddGiftComponent } from '../gifts/add-gift/add-gift.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+  date=new Date();
+  categories:String[]=[];
   gifts:Gift[]=[];
-  poklon:Gift={
-    name:"Auto",
-    category:"Kola",
-    price:250,
-    imgUrl:"/assets/gift1.png",
-    comments:["asdf","pdf"]
-  };
-  poklon2:Gift={
-    name:"Autoq",
-    category:"Kolaw",
-    price: 111,
-    imgUrl:"/assets/gift2.png",
-    comments:["lol","123"]
-  };
-  constructor(private auth:UserService,public dialog:MatDialog) { }
+ 
+
+  constructor(private auth:UserService,public dialog:MatDialog,private giftService:GiftService) { }
 
   ngOnInit() {
     if(this.auth.isLoggedIn())
     {
-      this.gifts.push(this.poklon);
-      this.gifts.push(this.poklon2);
-      this.gifts.push(this.poklon);
-      this.gifts.push(this.poklon2);
-      this.gifts.push(this.poklon);
-      this.gifts.push(this.poklon2);
-      this.gifts.push(this.poklon);
-      this.gifts.push(this.poklon2);
+      this.giftService.getAllGifts().subscribe(res=>{
+        this.gifts=res
+        
+      });
+
+      
     }
   }
   isAdmin(){
-    
+
   }
-  openDialog():void{
-    const dialogRef=this.dialog.open(GiftDialogComponent,{data:this.poklon});
+  openDialog(gift:Gift):void{
+    const dialogRef=this.dialog.open(GiftDialogComponent,{data:gift});
+  }
+  Add():void{
+    const dialogRef2=this.dialog.open(AddGiftComponent);
+  }
+  Remove(gift:Gift):void{
+    this.giftService.removeGift(gift).subscribe(res=>{console.log(res)
+    this.ngOnInit();
+    });
+    
   }
 }

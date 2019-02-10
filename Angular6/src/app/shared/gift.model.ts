@@ -1,7 +1,11 @@
-export class Gift{
+export interface Gift{
+    _id?:String;
     name:String;
+    description:String;
     category:String;
     price:Number;
-    imgUrl:String;
-    comments:String[];
+    imgurl:String;
+    dateAdded:Date;
+    discount:Number;
+    inStock:Boolean;
 }

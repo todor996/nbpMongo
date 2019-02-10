@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { Gift } from '../shared/gift.model';
+import { Gift } from '../../shared/gift.model';
 @Component({
   selector: 'app-gift-dialog',
   templateUrl: './gift-dialog.component.html',

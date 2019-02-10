@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
-
+ObjectID=require('mongodb').ObjectID;
 const Gift=mongoose.model('Gift');
 
 module.exports.addGift = (req,res,next) => {
@@ -28,21 +28,43 @@ module.exports.getGiftsFromCategory = (req,res,next) => {
 }
 
 module.exports.getAllGifts = (req,res,next) => {
-    return Gift.find();
+    Gift.find((err,gifts)=>{
+        if(err)
+        res.json({success:false,message:"Error"});
+        else
+            return res.status(200).json(gifts);
+       
+    });
 }
 
 module.exports.getGiftById = (req, res, next) =>{
-    Gift.findOne({ _id: req._id },
+    
+    Gift.findOne({ _id: mongoose.Types.ObjectId(req.params.id)},
         (err, gift) => {
+            
             if (!gift)
                 return res.status(404).json({ status: false, message: 'Gift not found.' });
             else
-                return res.status(200).json({ status: true, gift : _.pick(gift,['name','price','description']) });
+                return res.status(200).json({ status: true, gift : _.pick(gift,['name','price','description','_id']) });
         }
     );
 }
 
 module.exports.removeGift = (req,res,next) => {
-    Gift.deleteOne({_id:req._id});
+    Gift.deleteOne({_id:mongoose.Types.ObjectId(req.params.id)},
+        (err,gift)=>{
+            if (err){
+                res.json({success:false,message:"Not deleted"});
+            }
+            else if(gift)
+            {
+                console.log(req.params);
+                console.log(gift);
+                res.json({success:true,message:"Successfull remove gift"});
+                
+            }
+            else res.json({success:false});
+        }
+        );
 }
 

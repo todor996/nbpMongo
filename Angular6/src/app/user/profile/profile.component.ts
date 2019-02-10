@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/user.model';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
     this.auth.profile().subscribe(res=>{
       console.log(res.user);
       this.loggedUser=res.user;
-      this.auth.admin=res.user.admin;
+      
       
     },(err)=>{
       console.error(err);

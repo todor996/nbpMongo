@@ -27,7 +27,9 @@ mat-sidenav{
     right: 0;
     background: #eee;
   }
-
+div#category{
+    clear:both;
+}
 .clear
 {
     clear: both;

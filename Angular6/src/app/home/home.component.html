@@ -1,14 +1,21 @@
 <div *ngIf="auth.isLoggedIn()">
   <mat-sidenav-container>
-    <mat-sidenav mode="side" opened>Kategorije</mat-sidenav>
+    <mat-sidenav mode="side" opened>
+        <div *ngIf="auth.isAdmin()"><mat-label>Add new gift</mat-label><button mat-icon-button (click)="Add()"><mat-icon>add</mat-icon></button></div>
+     
+     
+     
+      <div id="category">Kategorije</div>
+    </mat-sidenav>
     <mat-sidenav-content>
-        <div *ngIf="auth.isAdmin()">Admin sam</div>
+        
         <div *ngFor="let gift of gifts" className="product-listing" >
             <div className="product-list-item" width="200px">
               <h3>Name: {{gift.name}}</h3>
-              <div> <img  height="100px" src={{gift.imgUrl}} /></div>
+              <div> <img  height="100px" src={{gift.imgurl}} /></div>
               <div class="clear">Price: {{gift.price}}</div>
-              <div class="clear"><button mat-icon-button (click)="openDialog()"><mat-icon>search</mat-icon></button></div>
+              <div class="clear"><button mat-icon-button (click)="openDialog(gift)"><mat-icon>search</mat-icon></button></div>
+              <div *ngIf="auth.isAdmin()"><button mat-icon-button (click)="Remove(gift)"><mat-icon>delete</mat-icon></button></div>
             </div>  
         </div>
     </mat-sidenav-content>

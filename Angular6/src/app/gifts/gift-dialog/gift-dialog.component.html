@@ -1,0 +1,21 @@
+<div className="product-list-item" width="200px">
+    <h3>Name: {{data.name}}</h3>
+    <div>Description: {{data.description}}</div>
+    <div> <img  height="100px" src={{data.imgurl}} /></div>
+    <div >Price: {{data.price}}</div>
+    <!--<span>Average rating: 4/5</span>-->
+    <div>Discount: {{data.discount}}</div>
+    <div>
+      Is available:{{data.inStock}}
+    </div>
+    <div>Date added: {{data.dateAdded|date}}</div>
+    <div>Category: {{data.category}}</div>
+    <!--<div *ngFor="let comment of data.comments">
+      <div>{{comment}} posted by {{comment.user}} on {{comment.date}}</div>
+    </div>-->
+    
+    <div>
+      <mat-label>Buy</mat-label>
+      <button mat-icon-button><mat-icon>shop</mat-icon></button>
+    </div>
+</div>  

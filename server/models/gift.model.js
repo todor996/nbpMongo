@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 var date=new Date();
 
-var giftSchema= new mongoose.Schema({
+
+var giftSchema = new mongoose.Schema({
     name:
     {
         type:String,
@@ -42,5 +43,4 @@ var giftSchema= new mongoose.Schema({
         default:"http://tjmartell.org/lib/kcfinder/upload/images/gift.jpeg"
     }
 });
-
 module.exports=mongoose.model('Gift',giftSchema);
