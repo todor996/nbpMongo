@@ -51,6 +51,8 @@ export class GiftDialogComponent implements OnInit  {
     }
     postComment(){
       console.log(this.komentar);
+      if(!this.komentar.comment)
+      return;
       this.CommentService.addComment(this.komentar).subscribe(res=>{
         console.log(res);
         this.ngOnInit();
