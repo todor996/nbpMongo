@@ -1,6 +1,7 @@
 <div *ngIf="auth.isLoggedIn()">
   <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
+      
         <div *ngIf="auth.isAdmin()"><mat-label>Add new gift</mat-label><button mat-icon-button (click)="Add()"><mat-icon>add</mat-icon></button></div>
      
      

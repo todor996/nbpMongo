@@ -29,7 +29,7 @@ module.exports.authenticate = (req, res, next) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
         // registered user
-        else if (user) return res.status(200).json({ "token": user.generateJwt() ,"admin":user.admin});
+        else if (user) return res.status(200).json({ "token": user.generateJwt() ,"admin":user.admin,"id":user._id});
         // unknown user or wrong password
         else return res.status(404).json(info);
     })(req, res);

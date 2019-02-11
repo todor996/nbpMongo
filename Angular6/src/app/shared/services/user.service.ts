@@ -3,11 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { User } from '../user.model';
+import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 interface TokenResponse {
   token: string;
   admin:boolean;
+  id:string;
 }
 
 export interface TokenPayload {
@@ -23,9 +24,11 @@ export class UserService {
     fullName: '',
     email: '',
     password: '',
-    admin:false
+    admin:false,
+    _id:''
   };
   admin:boolean;
+  userId:string;
   constructor(private http: HttpClient,private router:Router) { }
   private token:string;
   private saveToken(token:string):void{

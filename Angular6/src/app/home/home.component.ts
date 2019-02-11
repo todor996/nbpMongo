@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-import {Gift} from '../shared/gift.model';
+import {Gift} from '../shared/models/gift.model';
 import { MatDialog } from '@angular/material';
 import { GiftDialogComponent } from '../gifts/gift-dialog/gift-dialog.component';
-import { User } from '../shared/user.model';
+import { User } from '../shared/models/user.model';
 import { GiftService } from '../shared/services/gift.service';
 import { AddGiftComponent } from '../gifts/add-gift/add-gift.component';
 @Component({
@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     if(this.auth.isLoggedIn())
     {
+      console.log(this.auth.isLoggedIn())
+      console.log(this.auth.userId);
       this.giftService.getAllGifts().subscribe(res=>{
         this.gifts=res
         
@@ -35,10 +37,14 @@ export class HomeComponent implements OnInit {
   }
   openDialog(gift:Gift):void{
     const dialogRef=this.dialog.open(GiftDialogComponent,{data:gift});
+    
   }
   Add():void{
     const dialogRef2=this.dialog.open(AddGiftComponent);
-  }
+    dialogRef2.afterClosed().subscribe(()=>{
+      this.ngOnInit();
+    })
+  } 
   Remove(gift:Gift):void{
     this.giftService.removeGift(gift).subscribe(res=>{console.log(res)
     this.ngOnInit();

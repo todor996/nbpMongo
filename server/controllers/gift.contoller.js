@@ -11,7 +11,7 @@ module.exports.addGift = (req,res,next) => {
     gift.description=req.body.description;
     gift.inStock=true;
     gift.category=req.body.category;
-    gift.dateAdded=date.getDate();
+    gift.dateAdded=req.body.dateAdded;
     gift.discount=req.body.discount;
     gift.imgurl=req.body.imgurl;
     gift.save((err,doc) => {

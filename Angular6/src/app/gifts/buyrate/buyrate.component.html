@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit(number)">
+<mat-form-field>
+    <mat-select placeholder="Rate product" [(value)]="number">
+      <mat-option *ngFor="let number of rate " [value]="number">
+        {{number}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div><button mat-raised-button>Confirm rate&buy</button></div>
+</form>

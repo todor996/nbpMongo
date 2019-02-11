@@ -10,12 +10,21 @@
     </div>
     <div>Date added: {{data.dateAdded|date}}</div>
     <div>Category: {{data.category}}</div>
+    <div>Rating: {{avgRating}}/10</div>
+    <div *ngFor="let komentar of comments">
+      {{komentar.comment}} posted on {{komentar.dateAdded|date}}
+    </div>
+    <form (ngSubmit)="postComment()">
+      <input type="text" [(ngModel)]="komentar.comment" name="comment" required>
+      <button type="submit" mat-raised-button>Submit</button>
+
+    </form>
     <!--<div *ngFor="let comment of data.comments">
       <div>{{comment}} posted by {{comment.user}} on {{comment.date}}</div>
     </div>-->
     
     <div>
       <mat-label>Buy</mat-label>
-      <button mat-icon-button><mat-icon>shop</mat-icon></button>
+      <button mat-icon-button (click)="Buy(data)"><mat-icon>shop</mat-icon></button>
     </div>
 </div>  

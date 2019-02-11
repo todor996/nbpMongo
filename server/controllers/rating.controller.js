@@ -4,33 +4,35 @@ const _ = require('lodash');
 const Rating=mongoose.model('Rating');
 
 module.exports.addRating = (req,res,next) => {
-    var rate=alreadyRated(req,res,next);//provera da li je vec taj korisnik ocenio taj poklon
-    if(!rate){
-        changeRating(req,res,next);
-    }
-    else{
         var rating=new Rating();
-        rating.user=req.body.userId;
-        rating.gift=req.body.giftId;
+        console.log(req.body);
+        rating.user=mongoose.Types.ObjectId(req.body.user);
+        rating.gift=mongoose.Types.ObjectId(req.body.gift);
         rating.rating=req.body.rating;
-
-        rating.save((err,doc) => {
-            if (!err)
-                res.send(doc);
-            else {
-                return next(err);
-            }
-        });
+        Rating.find({user:mongoose.Types.ObjectId(req.body.user),gift:mongoose.Types.ObjectId(req.body.gift)},(err,ratings)=>{
+            if(ratings!=[])
+              res.json({success:false,message:"already rated"});
+            else
+            
+                rating.save((err,doc) => {
+                    if (!err)
+                        res.send(doc);
+                    else {
+                        return next(err);
+                    }
+                });
+            
+        })
     }
-}
+        
 
 module.exports.getRatingForGift = (req,res,next) => {
-    var sum=0;
-    var array=Rating.find({gift:req.giftId});
-    array.forEach((item) => {
-        sum+=item.rating;
+    Rating.find({gift:mongoose.Types.ObjectId(req.params.id)},(err,ratings)=>{
+        if(!ratings)
+        return res.status(404).json({success:false,message:"error"});
+        else return res.status(200).json(ratings);
     });
-    return sum/array.count;
+  
 }
 
 module.exports.alreadyRated = (req,res,next) => {

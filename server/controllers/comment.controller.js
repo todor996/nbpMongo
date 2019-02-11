@@ -5,12 +5,11 @@ const Comments=mongoose.model('Comment');
 
 module.exports.addComment = (req,res,next) => {
     var comment=new Comments();
-    var date=new Date();
-    comment.user=req.body.userId;
-    comment.gift=req.body.giftId;
+    comment.user=mongoose.Types.ObjectId(req.body.user);
+    comment.gift=mongoose.Types.ObjectId(req.body.gift);
     comment.comment=req.body.comment;
-    comment.dateAdded=date.getDate();
-    
+    comment.dateAdded=req.body.dateAdded;
+    console.log(comment);
     comment.save((err,doc) => {
         if (!err)
             res.send(doc);
@@ -21,5 +20,10 @@ module.exports.addComment = (req,res,next) => {
 }
 
 module.exports.getAllCommentsForGift = (req,res,next) => {
-    return Comments.find({gift:req.giftId}).sort((a,b)=>{return a.dateAdded>b.dateAdded});
+    Comments.find({gift:mongoose.Types.ObjectId(req.params.id)},
+        (err,comments)=>{
+            if(err) res.json({success:false,message:"error"});
+            else return res.status(200).json(comments);
+        }
+        )
 }

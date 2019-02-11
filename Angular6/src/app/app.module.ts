@@ -15,12 +15,14 @@ import { LoginComponent } from './user/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './shared/services/user.service';
 import { AuthGuardService } from './shared/auth-guard.service';
-import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule,MatButtonModule, MatIconModule, MatDialogModule, MatRadioButton, MatRadioModule, MatInputModule} from '@angular/material';
+import {MatSidenavModule,MatToolbarModule, MatSelectModule, MatFormFieldModule,MatButtonModule, MatIconModule, MatDialogModule, MatRadioButton, MatRadioModule, MatInputModule, MatSnackBar, MatSnackBarContainer, MatSnackBarModule} from '@angular/material';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GiftDialogComponent } from './gifts/gift-dialog/gift-dialog.component';
 import { AddGiftComponent } from './gifts/add-gift/add-gift.component';
 import { GiftService } from './shared/services/gift.service';
+import { BuyrateComponent } from './gifts/buyrate/buyrate.component';
+import { StarRatingModule } from 'angular-star-rating'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { GiftService } from './shared/services/gift.service';
     HomeComponent,
     NavigationComponent,
     GiftDialogComponent,
-    AddGiftComponent
+    AddGiftComponent,
+    BuyrateComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +50,12 @@ import { GiftService } from './shared/services/gift.service';
     MatDialogModule,
     MatRadioModule,
     MatInputModule,
+    MatSnackBarModule,
+    StarRatingModule.forRoot(),
     BrowserAnimationsModule
   ],
-  entryComponents:[GiftDialogComponent,AddGiftComponent],
-  providers: [UserService,AuthGuardService,GiftService],
+  entryComponents:[GiftDialogComponent,AddGiftComponent,BuyrateComponent,MatSnackBarContainer],
+  providers: [UserService,AuthGuardService,GiftService,MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

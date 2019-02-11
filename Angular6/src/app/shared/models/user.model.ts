@@ -5,4 +5,5 @@ export class User {
     admin:boolean;
     exp?:number;
     iat?:number;
+    _id?:String;
 }

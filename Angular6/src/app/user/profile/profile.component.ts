@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -13,9 +13,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.auth.profile().subscribe(res=>{
-      console.log(res.user);
+     
       this.loggedUser=res.user;
-      
+      console.log(this.loggedUser);
       
     },(err)=>{
       console.error(err);

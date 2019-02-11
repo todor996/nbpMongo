@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res);
         this.auth.admin=res.admin;
+        this.auth.userId=res.id;
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         
