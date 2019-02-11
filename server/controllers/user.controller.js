@@ -41,14 +41,20 @@ module.exports.userProfile = (req, res, next) =>{
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['fullName','email','admin']) });
+                return res.status(200).json({ status: true, user : _.pick(user,['fullName','email','admin','gifts']) });
         }
     );
 }
 
 module.exports.addGiftToUsersList = (req,res,next) => {    
-    User.findOneAndUpdate({_id:req._id}, 
-        { $addToSet: { gifts:req.giftId } });
+    console.log(req.body);
+    User.findOneAndUpdate({_id:mongoose.Types.ObjectId(req.body.id)}, 
+        { $addToSet: { gifts:mongoose.Types.ObjectId(req.body.giftId) } },{new:true},(err,doc)=>
+    {   if(!err)
+        res.status(200).json(doc);
+        else
+        res.json({success:false,message:"Error"});
+    });
 }
 
 module.exports.removeGiftFromUsersList = (req,res,next) => {    

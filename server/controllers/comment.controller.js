@@ -9,7 +9,7 @@ module.exports.addComment = (req,res,next) => {
     comment.gift=mongoose.Types.ObjectId(req.body.gift);
     comment.comment=req.body.comment;
     comment.dateAdded=req.body.dateAdded;
-    console.log(comment);
+  
     comment.save((err,doc) => {
         if (!err)
             res.send(doc);

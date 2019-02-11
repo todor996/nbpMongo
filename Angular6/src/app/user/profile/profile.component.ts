@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
+import { GiftService } from 'src/app/shared/services/gift.service';
+import { Gift } from 'src/app/shared/models/gift.model';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +11,16 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class ProfileComponent implements OnInit {
   loggedUser:User;
-  constructor(private auth:UserService) { }
+  gifts:Gift[];
+  constructor(private auth:UserService,private gift:GiftService) { }
 
   ngOnInit() {
+    
+      
     this.auth.profile().subscribe(res=>{
      
       this.loggedUser=res.user;
-      console.log(this.loggedUser);
+      this.gift.getAllGifts().subscribe(p=>console.log(this.gifts=p.filter(el=>this.loggedUser.gifts.includes(el._id))));
       
     },(err)=>{
       console.error(err);

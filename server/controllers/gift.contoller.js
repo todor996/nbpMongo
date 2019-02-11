@@ -23,9 +23,6 @@ module.exports.addGift = (req,res,next) => {
     });
 }
 
-module.exports.getGiftsFromCategory = (req,res,next) => {
-    return Gift.find({category:req.category});
-}
 
 module.exports.getAllGifts = (req,res,next) => {
     Gift.find((err,gifts)=>{
@@ -37,17 +34,13 @@ module.exports.getAllGifts = (req,res,next) => {
     });
 }
 
-module.exports.getGiftById = (req, res, next) =>{
-    
-    Gift.findOne({ _id: mongoose.Types.ObjectId(req.params.id)},
-        (err, gift) => {
-            
-            if (!gift)
-                return res.status(404).json({ status: false, message: 'Gift not found.' });
-            else
-                return res.status(200).json({ status: true, gift : _.pick(gift,['name','price','description','_id']) });
-        }
-    );
+module.exports.getGiftsById = (req, res, next) =>{
+let arr=(req.params.ids).map(el=>mongoose.Types.ObjectId(ele));
+console.log(arr);
+Gift.find()
+    .where('_id')
+    .in(arr)
+    .exec((err,gifts)=>res.json("POSLATO"));
 }
 
 module.exports.removeGift = (req,res,next) => {
@@ -58,8 +51,7 @@ module.exports.removeGift = (req,res,next) => {
             }
             else if(gift)
             {
-                console.log(req.params);
-                console.log(gift);
+               
                 res.json({success:true,message:"Successfull remove gift"});
                 
             }

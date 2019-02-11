@@ -5,7 +5,7 @@ const Rating=mongoose.model('Rating');
 
 module.exports.addRating = (req,res,next) => {
         var rating=new Rating();
-        console.log(req.body);
+        
         rating.user=mongoose.Types.ObjectId(req.body.user);
         rating.gift=mongoose.Types.ObjectId(req.body.gift);
         rating.rating=req.body.rating;
@@ -35,13 +35,5 @@ module.exports.getRatingForGift = (req,res,next) => {
   
 }
 
-module.exports.alreadyRated = (req,res,next) => {
-    return Rating.findOne({gift:req.giftId, user:req.userId});
-}
 
-module.exports.changeRating =(req,res,next) => {
 
-    Rating.remove({gift:req.giftId, user:req.userId});
-    addRating(req,res,next);
-    
-}

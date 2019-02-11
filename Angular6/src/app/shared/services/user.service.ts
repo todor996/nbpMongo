@@ -59,7 +59,7 @@ export class UserService {
   public isAdmin():boolean{
    return this.admin;
   }
-  private request(method: 'post'|'get', type: 'authenticate'|'register'|'userProfile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'authenticate'|'register'|'userProfile'|'userGifts', user?: TokenPayload): Observable<any> {
     let base;
 
     if (method === 'post') {
@@ -91,7 +91,10 @@ export class UserService {
   public profile(): Observable<any> {
     return this.request('get', 'userProfile');
   }
-
+  public userGifts(obj:Object):Observable<any>{
+    console.log(obj);
+    return this.http.put('http://localhost:3000/api/userGifts',{id:obj['id'],giftId:obj['giftId']});
+  }
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('meanGifts-token');

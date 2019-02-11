@@ -20,7 +20,8 @@ var userSchema = new mongoose.Schema({
     admin:{
         type:Boolean
     },
-    saltSecret: String
+    saltSecret: String,
+    gifts:[mongoose.Schema.Types.ObjectId]
 });
 
 // Custom validation for email

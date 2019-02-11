@@ -27,5 +27,6 @@ export class GiftService {
     let URI=`${this.url}/gift/${gift._id}`;
     return this.http.delete(URI);
   }
+  
 }
  

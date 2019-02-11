@@ -15,6 +15,16 @@
           <p class="form-control-static">{{ loggedUser?.email }}</p>
         </div>
       </div>
+      <h4>Bought gifts:</h4>
+      <div *ngFor="let gift of gifts" className="product-listing" >
+        <div className="product-list-item" width="200px">
+          <h3>Name: {{gift.name}}</h3>
+          <div> <img  height="100px" src={{gift.imgurl}} /></div>
+          <div class="clear">Price: {{gift.price}}</div>
+          <div class="clear"><button mat-icon-button (click)="openDialog(gift)"><mat-icon>search</mat-icon></button></div>
+         
+        </div>  
+    </div>
 
     </div>
 
